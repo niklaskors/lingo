@@ -26,7 +26,8 @@ const ROWS = 9;
 
 export function Game() {
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ['words'], queryFn: async () => {
+    queryKey: ['words'], refetchOnWindowFocus: false, queryFn: async () => {
+      // TODO: Try loading words until finding one in dictionary that works (Not all words are in the dictionary checker)
       const response = await fetch(`https://random-word-api.vercel.app/api?words=1&length=${COLUMNS}`);
       const word: string[] = await response.json();
       console.log('The word is', word[0])
@@ -70,7 +71,7 @@ export function Game() {
     return activeGuess;
   }, [correctWord, existsInDictionary]);
 
-  const evaluateGame = useCallback(() => {
+  const evaluateGame = useCallback((guesses: Guess[]) => {
     const correctGuess = guesses.find((guess) => {
       if (!guess.validation) {
         return false;
@@ -91,7 +92,7 @@ export function Game() {
       setGameStatus('lost');
     }
 
-  }, [guesses, setGameStatus]);
+  }, [setGameStatus]);
 
   const keyboardHandler = useCallback(async (e: KeyboardEvent) => {
     const activeGuessIndex = guesses.findIndex((guess) => guess.isActive);
@@ -124,8 +125,9 @@ export function Game() {
           word: '',
           validation: null
         });
-        setGuesses([...guesses]);
-        evaluateGame();
+        const newGuesses = [...guesses];
+        setGuesses(newGuesses);
+        evaluateGame(newGuesses);
       } catch (e) {
         //
       }
