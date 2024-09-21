@@ -1,0 +1,88 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should validate letters correctly 1`] = `
+[
+  {
+    "letter": "g",
+    "status": "present",
+  },
+  {
+    "letter": "a",
+    "status": "absent",
+  },
+  {
+    "letter": "r",
+    "status": "present",
+  },
+  {
+    "letter": "d",
+    "status": "absent",
+  },
+  {
+    "letter": "e",
+    "status": "present",
+  },
+  {
+    "letter": "n",
+    "status": "present",
+  },
+]
+`;
+
+exports[`should validate letters correctly 2`] = `
+[
+  {
+    "letter": "e",
+    "status": "correct",
+  },
+  {
+    "letter": "e",
+    "status": "absent",
+  },
+  {
+    "letter": "e",
+    "status": "correct",
+  },
+  {
+    "letter": "e",
+    "status": "absent",
+  },
+  {
+    "letter": "e",
+    "status": "absent",
+  },
+  {
+    "letter": "e",
+    "status": "absent",
+  },
+]
+`;
+
+exports[`should validate letters correctly 3`] = `
+[
+  {
+    "letter": "e",
+    "status": "correct",
+  },
+  {
+    "letter": "n",
+    "status": "correct",
+  },
+  {
+    "letter": "e",
+    "status": "absent",
+  },
+  {
+    "letter": "r",
+    "status": "correct",
+  },
+  {
+    "letter": "g",
+    "status": "correct",
+  },
+  {
+    "letter": "n",
+    "status": "absent",
+  },
+]
+`;
